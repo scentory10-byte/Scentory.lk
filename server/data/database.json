@@ -1,0 +1,608 @@
+{
+  "settings": {
+    "storeName": "SCENTORY.LK",
+    "brandSubtitle": "A New Destination for Your Signature Scent",
+    "currency": "LKR",
+    "currencySymbol": "Rs. ",
+    "contactEmail": "orders@scentory.lk",
+    "contactPhone": "0763151311",
+    "whatsappNumber": "0763151311",
+    "instagramHandle": "@scentory.lk",
+    "address": "Ulapane, Sri Lanka",
+    "deliveryFee": 500,
+    "freeDeliveryThreshold": 999999999,
+    "bankDetails": {
+      "bankName": "Commercial Bank of Ceylon",
+      "accountName": "SCENTORY LANKA (PVT) LTD",
+      "accountNumber": "8012398456",
+      "branch": "Nawalapitiya",
+      "swiftCode": "CCEYLKX",
+      "instructions": "Please use your Order ID as the payment reference or remarks. Once transferred, upload the deposit slip or screenshot of your banking app receipt below."
+    },
+    "announcement": "✨ Flat Islandwide Delivery (Rs. 500) | Authentic Luxury Decants & Flacons",
+    "instagramUrl": "https://www.instagram.com/scentory.lk"
+  },
+  "users": [
+    {
+      "id": "usr_admin_01",
+      "name": "Scentory Admin",
+      "email": "admin@scentory.lk",
+      "password": "$2b$10$lpaO3U6O3DgXR.JKlrrV0ew8.fbyEWB28RuhIsmRIfnmGUUOuPoWO",
+      "role": "admin",
+      "phone": "+94 77 889 9000",
+      "address": "Colombo 03",
+      "createdAt": "2026-11-20T17:06:22.646Z"
+    },
+    {
+      "id": "usr_mwp9ois139tm",
+      "name": "MOHAMAD UMAR",
+      "email": "umarxgamer04@gmail.com",
+      "password": "$2b$10$4rnO/UiggawwFQc3778mx.kBcWCCoMRz5Gwlf7dp5qgqNki3kD3QO",
+      "role": "customer",
+      "phone": "771813023",
+      "address": "313, Nawalapitiya Road Ulapane",
+      "city": "Kandy, Ulapane",
+      "createdAt": "2026-11-20T17:42:39.889Z",
+      "isPremium": true,
+      "membershipTier": "VIP Premium Member"
+    },
+    {
+      "id": "usr_mwq1a5m0lrzy",
+      "name": "Mohamad Ayaan",
+      "email": "umarpsycho3@gmail.com",
+      "password": "$2b$10$3w4WP45buUY3zBT2su7Ll.rOWHNh8wauGBKFZnD/xl1BWzMOJoL6K",
+      "role": "customer",
+      "phone": "0771813023",
+      "address": "234, Kandy Road",
+      "city": "Kandy",
+      "createdAt": "2026-11-21T06:35:18.888Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_velvet_iris",
+      "name": "Velvet Noir Santal",
+      "tagline": "Eau De Parfum • Australian Sandalwood, Cardamom & Iris",
+      "description": "Smooth, magnetic, and effortlessly seductive. Creamy Australian sandalwood fused with freshly crushed green cardamom, powdery Tuscan iris, and subtle cashmere cedar.",
+      "gender": "unisex",
+      "scentFamily": "Woody Powdery",
+      "isFeatured": true,
+      "badge": "Best Seller",
+      "salesCount": 70,
+      "notes": {
+        "top": [
+          "Guatemalan Cardamom",
+          "Violet Leaf",
+          "Papyrus"
+        ],
+        "heart": [
+          "Tuscan Iris Concrete",
+          "Cedarwood Virginia",
+          "Cypress"
+        ],
+        "base": [
+          "Australian Sandalwood",
+          "White Amber",
+          "Clean Musks"
+        ]
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80"
+      ],
+      "variants": [
+        {
+          "id": "v_5ml",
+          "size": "5ml Pocket Atomizer",
+          "price": 1900,
+          "discountPrice": 1750,
+          "stock": 48,
+          "sku": "VNS-5ML"
+        },
+        {
+          "id": "v_10ml",
+          "size": "10ml Travel Spray",
+          "price": 3600,
+          "discountPrice": 3200,
+          "stock": 40,
+          "sku": "VNS-10ML"
+        },
+        {
+          "id": "v_20ml",
+          "size": "20ml Luxury Decant",
+          "price": 6800,
+          "discountPrice": 6200,
+          "stock": 30,
+          "sku": "VNS-20ML"
+        },
+        {
+          "id": "v_50ml",
+          "size": "50ml Signature Flacon",
+          "price": 14500,
+          "discountPrice": 13200,
+          "stock": 18,
+          "sku": "VNS-50ML"
+        },
+        {
+          "id": "v_100ml",
+          "size": "100ml Grand Prestige",
+          "price": 25500,
+          "discountPrice": null,
+          "stock": 13,
+          "sku": "VNS-100ML"
+        }
+      ],
+      "createdAt": "2026-11-20T17:06:22.653Z",
+      "updatedAt": "2026-11-20T19:25:06.874Z"
+    },
+    {
+      "id": "prod_tobacco_vanille",
+      "name": "Tobacco Havane Privé",
+      "tagline": "Extrait De Parfum • Cuban Tobacco Leaf, Tonka & Spiced Honey",
+      "description": "Rich cured Cuban tobacco leaves steeped in wild blossom honey, golden amber, roasted tonka bean, and spiced gingerbread. An opulent, warming autumn/winter powerhouse.",
+      "gender": "unisex",
+      "scentFamily": "Gourmand Tobacco",
+      "isFeatured": true,
+      "badge": "Winter Special",
+      "salesCount": 63,
+      "notes": {
+        "top": [
+          "Tobacco Leaf",
+          "Spicy Notes",
+          "Ginger Root"
+        ],
+        "heart": [
+          "Tonka Bean",
+          "Tobacco Blossom",
+          "Cacao & Honey"
+        ],
+        "base": [
+          "Dried Fruits Accord",
+          "Sweet Woody Notes",
+          "Benzoin"
+        ]
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80"
+      ],
+      "variants": [
+        {
+          "id": "v_5ml",
+          "size": "5ml Pocket Atomizer",
+          "price": 2100,
+          "discountPrice": 1850,
+          "stock": 33,
+          "sku": "THP-5ML"
+        },
+        {
+          "id": "v_10ml",
+          "size": "10ml Travel Spray",
+          "price": 3950,
+          "discountPrice": 3500,
+          "stock": 28,
+          "sku": "THP-10ML"
+        },
+        {
+          "id": "v_20ml",
+          "size": "20ml Luxury Decant",
+          "price": 7400,
+          "discountPrice": 6700,
+          "stock": 20,
+          "sku": "THP-20ML"
+        },
+        {
+          "id": "v_50ml",
+          "size": "50ml Signature Flacon",
+          "price": 15500,
+          "discountPrice": 13900,
+          "stock": 13,
+          "sku": "THP-50ML"
+        },
+        {
+          "id": "v_100ml",
+          "size": "100ml Grand Prestige",
+          "price": 27800,
+          "discountPrice": 24900,
+          "stock": 12,
+          "sku": "THP-100ML"
+        }
+      ],
+      "createdAt": "2026-11-20T17:06:22.653Z",
+      "updatedAt": "2026-11-20T18:04:43.016Z"
+    },
+    {
+      "id": "prod_ocean_leather",
+      "name": "Cyan Leather & Spice",
+      "tagline": "Eau De Parfum • Marine Breeze, Italian Citrus & Soft Suede",
+      "description": "Crisp aquatic mineral freshness encountering warm Mediterranean sunlit citrus and sophisticated soft Tuscan suede leather. Clean, charismatic, and intensely masculine.",
+      "gender": "men",
+      "scentFamily": "Fresh Aromatic",
+      "isFeatured": false,
+      "badge": "Trending Now",
+      "salesCount": 51,
+      "notes": {
+        "top": [
+          "Calabrian Bergamot",
+          "Sea Salt Spray",
+          "Pink Pepper"
+        ],
+        "heart": [
+          "Aquatic Lavender",
+          "Clary Sage",
+          "Geranium Leaf"
+        ],
+        "base": [
+          "Italian Suede",
+          "Haitian Vetiver",
+          "Modern Ambroxan"
+        ]
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80"
+      ],
+      "variants": [
+        {
+          "id": "v_5ml",
+          "size": "5ml Pocket Atomizer",
+          "price": 1750,
+          "discountPrice": 1550,
+          "stock": 60,
+          "sku": "CLS-5ML"
+        },
+        {
+          "id": "v_10ml",
+          "size": "10ml Travel Spray",
+          "price": 3300,
+          "discountPrice": 2950,
+          "stock": 45,
+          "sku": "CLS-10ML"
+        },
+        {
+          "id": "v_20ml",
+          "size": "20ml Luxury Decant",
+          "price": 6200,
+          "discountPrice": 5600,
+          "stock": 25,
+          "sku": "CLS-20ML"
+        },
+        {
+          "id": "v_50ml",
+          "size": "50ml Signature Flacon",
+          "price": 13200,
+          "discountPrice": null,
+          "stock": 16,
+          "sku": "CLS-50ML"
+        },
+        {
+          "id": "v_100ml",
+          "size": "100ml Grand Prestige",
+          "price": 23500,
+          "discountPrice": 21000,
+          "stock": 15,
+          "sku": "CLS-100ML"
+        }
+      ],
+      "createdAt": "2026-11-20T17:06:22.653Z",
+      "updatedAt": "2026-11-20T18:04:34.276Z"
+    },
+    {
+      "id": "prod_amber_oud",
+      "name": "Oud Royale Impérial",
+      "tagline": "Extrait De Parfum • Rare Cambodian Oud & Warm Amber",
+      "description": "An intoxicating symphony of royal Cambodian oud wood, gilded amber resin, smoked Damask rose, and velvety vanilla bean. Crafted for distinguished evenings and everlasting presence.",
+      "gender": "unisex",
+      "scentFamily": "Oriental Woody",
+      "isFeatured": true,
+      "badge": "Signature Masterpiece",
+      "salesCount": 44,
+      "notes": {
+        "top": [
+          "Rare Saffron",
+          "Bergamot Zest",
+          "Damascene Rose"
+        ],
+        "heart": [
+          "Aged Cambodian Oud",
+          "Amber Resin",
+          "Nutmeg Spice"
+        ],
+        "base": [
+          "Madagascar Vanilla",
+          "Rich Sandalwood",
+          "Smoked Leather"
+        ]
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80"
+      ],
+      "variants": [
+        {
+          "id": "v_5ml",
+          "size": "5ml Pocket Atomizer",
+          "price": 2200,
+          "discountPrice": 1950,
+          "stock": 43,
+          "sku": "ORI-5ML"
+        },
+        {
+          "id": "v_10ml",
+          "size": "10ml Travel Spray",
+          "price": 4200,
+          "discountPrice": 3800,
+          "stock": 38,
+          "sku": "ORI-10ML"
+        },
+        {
+          "id": "v_20ml",
+          "size": "20ml Luxury Decant",
+          "price": 7900,
+          "discountPrice": 7200,
+          "stock": 24,
+          "sku": "ORI-20ML"
+        },
+        {
+          "id": "v_50ml",
+          "size": "50ml Signature Flacon",
+          "price": 16500,
+          "discountPrice": 14900,
+          "stock": 15,
+          "sku": "ORI-50ML"
+        },
+        {
+          "id": "v_100ml",
+          "size": "100ml Grand Prestige",
+          "price": 29500,
+          "discountPrice": 26900,
+          "stock": 13,
+          "sku": "ORI-100ML"
+        }
+      ],
+      "createdAt": "2026-11-20T17:06:22.653Z",
+      "updatedAt": "2026-11-20T18:04:36.798Z"
+    },
+    {
+      "id": "prod_silk_jasmine",
+      "name": "Silk Petals & Gold",
+      "tagline": "Extrait De Parfum • Night-Blooming Jasmine & White Amber",
+      "description": "An ethereal radiant floral masterpiece. Dewy Sambac jasmine flowers picked at midnight, blended with luscious Italian peach nectar, sunlit neroli, and creamy white amber.",
+      "gender": "women",
+      "scentFamily": "Floral Amber",
+      "isFeatured": true,
+      "badge": "Limited Edition",
+      "salesCount": 35,
+      "notes": {
+        "top": [
+          "Italian White Peach",
+          "Neroli Essence",
+          "Mandarin"
+        ],
+        "heart": [
+          "Midnight Sambac Jasmine",
+          "Tuberose Absolu",
+          "Magnolia"
+        ],
+        "base": [
+          "Golden Ambergris",
+          "Bourbon Vanilla",
+          "Cashmeran"
+        ]
+      },
+      "images": [
+        "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
+      ],
+      "variants": [
+        {
+          "id": "v_5ml",
+          "size": "5ml Pocket Atomizer",
+          "price": 1850,
+          "discountPrice": 1650,
+          "stock": 40,
+          "sku": "SPG-5ML"
+        },
+        {
+          "id": "v_10ml",
+          "size": "10ml Travel Spray",
+          "price": 3500,
+          "discountPrice": 3100,
+          "stock": 35,
+          "sku": "SPG-10ML"
+        },
+        {
+          "id": "v_20ml",
+          "size": "20ml Luxury Decant",
+          "price": 6500,
+          "discountPrice": 5900,
+          "stock": 20,
+          "sku": "SPG-20ML"
+        },
+        {
+          "id": "v_50ml",
+          "size": "50ml Signature Flacon",
+          "price": 13900,
+          "discountPrice": 12500,
+          "stock": 12,
+          "sku": "SPG-50ML"
+        },
+        {
+          "id": "v_100ml",
+          "size": "100ml Grand Prestige",
+          "price": 24000,
+          "discountPrice": 21900,
+          "stock": 12,
+          "sku": "SPG-100ML"
+        }
+      ],
+      "createdAt": "2026-11-20T17:06:22.653Z",
+      "updatedAt": "2026-11-20T18:04:38.808Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "SCNT-5170",
+      "userId": "usr_mwp9ois139tm",
+      "customerDetails": {
+        "name": "MOHAMAD UMAR",
+        "email": "umarxgamer04@gmail.com",
+        "phone": "771813023",
+        "address": "313, Nawalapitiya Road Ulapane",
+        "city": "Kandy, Ulapane",
+        "postalCode": "",
+        "notes": ""
+      },
+      "items": [
+        {
+          "productId": "prod_tobacco_vanille",
+          "productName": "Tobacco Havane Privé",
+          "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80",
+          "variantId": "v_20ml",
+          "variantSize": "20ml Luxury Decant",
+          "price": 6700,
+          "quantity": 2,
+          "subtotal": 13400
+        }
+      ],
+      "subtotal": 13400,
+      "deliveryFee": 500,
+      "finalTotal": 13900,
+      "paymentMethod": "bank_transfer",
+      "bankSlipUrl": "/uploads/receipts/slip_1795207782546_67939.png",
+      "paymentStatus": "verified",
+      "orderStatus": "processing",
+      "bankDetailsSnap": {
+        "bankName": "Commercial Bank of Ceylon",
+        "accountName": "SCENTORY LANKA (PVT) LTD",
+        "accountNumber": "8012398456",
+        "branch": "Nawalapitiya",
+        "swiftCode": "CCEYLKX",
+        "instructions": "Please use your Order ID as the payment reference or remarks. Once transferred, upload the deposit slip or screenshot of your banking app receipt below."
+      },
+      "adminNotes": "",
+      "createdAt": "2026-11-20T20:49:46.412Z"
+    },
+    {
+      "id": "SCNT-2363",
+      "userId": "usr_mwp9ois139tm",
+      "customerDetails": {
+        "name": "MOHAMAD UMAR",
+        "email": "umarxgamer04@gmail.com",
+        "phone": "771813023",
+        "address": "313, Nawalapitiya Road Ulapane",
+        "city": "Kandy, Ulapane",
+        "postalCode": "",
+        "notes": ""
+      },
+      "items": [
+        {
+          "productId": "prod_amber_oud",
+          "productName": "Oud Royale Impérial",
+          "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80",
+          "variantId": "v_5ml",
+          "variantSize": "5ml Pocket Atomizer",
+          "price": 1950,
+          "quantity": 1,
+          "subtotal": 1950
+        }
+      ],
+      "subtotal": 1950,
+      "deliveryFee": 500,
+      "finalTotal": 2450,
+      "paymentMethod": "bank_transfer",
+      "bankSlipUrl": "/uploads/receipts/slip_1795207589760_25894.png",
+      "paymentStatus": "verified",
+      "orderStatus": "placed",
+      "bankDetailsSnap": {
+        "bankName": "Commercial Bank of Ceylon",
+        "accountName": "SCENTORY LANKA (PVT) LTD",
+        "accountNumber": "8012398456",
+        "branch": "Nawalapitiya",
+        "swiftCode": "CCEYLKX",
+        "instructions": "Please use your Order ID as the payment reference or remarks. Once transferred, upload the deposit slip or screenshot of your banking app receipt below."
+      },
+      "adminNotes": "",
+      "createdAt": "2026-11-20T20:46:35.048Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev_mwpzmyaviuws",
+      "customerName": "MOHAMAD UMAR",
+      "rating": 5,
+      "productName": "Oud Royale Impérial (10ml)",
+      "comment": "Perfect product",
+      "location": "Kandy, Ulapane",
+      "image": null,
+      "verifiedBuyer": true,
+      "createdAt": "2026-11-21T05:49:16.711Z"
+    },
+    {
+      "id": "rev_mwpddusaa5vz",
+      "customerName": "MOHAMAD UMAT",
+      "rating": 5,
+      "productName": "Oud Royale Impérial (10ml)",
+      "comment": "All prodcuts are best",
+      "location": "313, Nawalapitiya Road Ulapane",
+      "image": null,
+      "verifiedBuyer": true,
+      "createdAt": "2026-11-20T19:26:20.698Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_1795251550946",
+      "type": "user",
+      "title": "✅ Password Reset Confirmed",
+      "message": "Customer MOHAMAD UMAR (umarxgamer04@gmail.com) successfully verified with code 516044 and updated their password.",
+      "read": false,
+      "createdAt": "2026-11-21T08:59:10.946Z"
+    },
+    {
+      "id": "notif_1795251550766",
+      "type": "user",
+      "title": "🔑 Reset Code: 516044",
+      "message": "Customer MOHAMAD UMAR (umarxgamer04@gmail.com | Phone: 771813023) requested password reset. Verification Code: 516044",
+      "dataId": "rst_mwq6f60eibq4",
+      "code": "516044",
+      "customerEmail": "umarxgamer04@gmail.com",
+      "customerPhone": "771813023",
+      "read": false,
+      "createdAt": "2026-11-21T08:59:10.766Z"
+    },
+    {
+      "id": "notif_1795245557938",
+      "type": "user",
+      "title": "🔑 Password Reset",
+      "message": "MOHAMAD UMAR (umarxgamer04@gmail.com) successfully reset their account password.",
+      "read": false,
+      "createdAt": "2026-11-21T07:19:17.938Z"
+    },
+    {
+      "id": "notif_1795209304446",
+      "type": "chat",
+      "title": "💬 Live Chat Message",
+      "message": "MOHAMAD UMAR (771813023): dfbdf",
+      "dataId": "chat_mwph9ojhh5a",
+      "read": true,
+      "createdAt": "2026-11-20T21:15:04.446Z"
+    }
+  ],
+  "chatMessages": [
+    {
+      "id": "chat_mwph9ojhh5a",
+      "customerName": "MOHAMAD UMAR",
+      "phone": "771813023",
+      "email": "umarxgamer04@gmail.com",
+      "scentVision": "Live Concierge Support",
+      "notes": "",
+      "budget": "",
+      "message": "dfbdf",
+      "isCustomCreation": false,
+      "read": false,
+      "createdAt": "2026-11-20T21:15:04.445Z"
+    }
+  ],
+  "passwordResetRequests": []
+}
