@@ -62,9 +62,14 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
       });
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (e) {
+        data = { message: 'Server response error (' + res.status + ')' };
+      }
       if (!res.ok) {
-        throw new Error(data.message || 'Registration failed.');
+        throw new Error(data.message || 'Registration failed (HTTP ' + res.status + ')');
       }
       setToken(data.token);
       setUser(data.user);
