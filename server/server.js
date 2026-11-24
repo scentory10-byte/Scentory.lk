@@ -165,7 +165,7 @@ if (fs.existsSync(clientDist)) {
 }
 
 // Start Server if run directly (Local development / dedicated server)
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+if (!process.env.NETLIFY && !process.env.VERCEL && process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`===============================================`);
     console.log(`   SCENTORY.LK Luxury Perfume Store Online!`);
