@@ -66,27 +66,19 @@ export default function CheckoutView({ onBackToShop, onViewOrders, openAuthModal
     setUploadingSlip(true);
 
     try {
-      const formData = new FormData();
-      formData.append('receipt', file);
-
-      const res = await fetch('/api/orders/upload-slip', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('scentory_token')}`
-        },
-        body: formData
-      });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message || 'Failed to upload receipt slip.');
-      }
-
-      setBankSlipUrl(data.slipUrl);
-      setSlipFile(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setBankSlipUrl(reader.result);
+        setSlipFile(file);
+        setUploadingSlip(false);
+      };
+      reader.onerror = () => {
+        setUploadError('Failed to read payment slip file.');
+        setUploadingSlip(false);
+      };
+      reader.readAsDataURL(file);
     } catch (err) {
-      setUploadError(err.message || 'Failed to upload slip.');
-    } finally {
+      setUploadError('Failed to process receipt.');
       setUploadingSlip(false);
     }
   };

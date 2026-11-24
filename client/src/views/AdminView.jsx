@@ -717,25 +717,21 @@ export default function AdminView({ onBackToShop }) {
 
     setUploadingImage(true);
     try {
-      const formData = new FormData();
-      formData.append('image', file);
-
-      const res = await fetch('/api/products/upload-image', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${token}` },
-        body: formData
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Image upload failed');
-
-      setProductForm(prev => ({
-        ...prev,
-        images: [...(prev.images || []), data.imageUrl]
-      }));
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProductForm(prev => ({
+          ...prev,
+          images: [...prev.images, reader.result]
+        }));
+        setUploadingImage(false);
+      };
+      reader.onerror = () => {
+        alert('Failed to read image file.');
+        setUploadingImage(false);
+      };
+      reader.readAsDataURL(file);
     } catch (err) {
-      alert(err.message);
-    } finally {
+      alert(err.message || 'Error processing image.');
       setUploadingImage(false);
     }
   };
@@ -1669,7 +1665,7 @@ export default function AdminView({ onBackToShop }) {
                               className="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-[11px] inline-flex items-center gap-1"
                             >
                               <span>Chat on WhatsApp: {selectedOrder.customerDetails?.phone || selectedOrder.phone}</span>
-                            </a>
+                             <button type="button" onClick={() => setPreviewSlipUrl(selectedOrder.bankSlipUrl)} className="text-[#d4af37] underline cursor-pointer bg-transparent border-none p-0">View Full Resolution Slip &rarr;</button>
                           </div>
                         )}
                       </div>
@@ -1732,12 +1728,10 @@ export default function AdminView({ onBackToShop }) {
                           <div className="flex justify-between items-center text-xs">
                             <span className="text-gray-400">Click image to enlarge full resolution.</span>
                             <a
-                              href={selectedOrder.bankSlipUrl}
                               target="_blank"
                               rel="noreferrer"
                               className="text-[#d4af37] underline"
                             >
-                              Open in new browser tab ↗
                             </a>
                           </div>
                         </div>
