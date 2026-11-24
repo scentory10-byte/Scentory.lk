@@ -1665,7 +1665,7 @@ export default function AdminView({ onBackToShop }) {
                               className="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-[11px] inline-flex items-center gap-1"
                             >
                               <span>Chat on WhatsApp: {selectedOrder.customerDetails?.phone || selectedOrder.phone}</span>
-                             <button type="button" onClick={() => setPreviewSlipUrl(selectedOrder.bankSlipUrl)} className="text-[#d4af37] underline cursor-pointer bg-transparent border-none p-0">View Full Resolution Slip &rarr;</button>
+                            </a>
                           </div>
                         )}
                       </div>
