@@ -4,7 +4,7 @@ const db = require('../db');
 const { authenticateToken, requireAdmin } = require('../middleware/auth');
 
 // Public settings (Store details, bank account info, shipping fees)
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const settings = db.getSettings();
     res.json(settings);
@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
 });
 
 // Update settings (Admin only)
-router.put('/', authenticateToken, requireAdmin, (req, res) => {
+router.put('/', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const updates = req.body;
-    const updatedSettings = db.updateSettings(updates);
+    const updatedSettings = await db.updateSettings(updates);
     res.json({
       message: 'Store settings updated successfully.',
       settings: updatedSettings

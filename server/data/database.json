@@ -6,29 +6,33 @@
     "currencySymbol": "Rs. ",
     "contactEmail": "orders@scentory.lk",
     "contactPhone": "0763151311",
-    "whatsappNumber": "94763151311",
+    "whatsappNumber": "0763151311",
+    "instagramHandle": "@scentory.lk",
+    "instagramUrl": "https://www.instagram.com/scentory.lk",
     "address": "313, Nawalapitiya Road, Ulapane, Sri Lanka",
-    "freeShippingThreshold": 50000,
-    "standardShippingFee": 500
-  },
-  "bankDetails": {
-    "bankName": "Commercial Bank of Ceylon",
-    "accountName": "SCENTORY LANKA (PVT) LTD",
-    "accountNumber": "8012398456",
-    "branch": "Kollupitiya Branch (Code: 045)",
-    "swiftCode": "CCEYLKX",
-    "instructions": "Please transfer the exact total amount and use your name or phone number as the payment reference. Upload the screenshot/receipt slip below."
+    "deliveryFee": 500,
+    "freeDeliveryThreshold": 999999999,
+    "bankDetails": {
+      "bankName": "Commercial Bank of Ceylon",
+      "accountName": "SCENTORY LANKA (PVT) LTD",
+      "accountNumber": "8012398456",
+      "branch": "Kollupitiya Branch (Code: 045)",
+      "swiftCode": "CCEYLKX",
+      "instructions": "Please transfer the exact total amount and use your name or phone number as the payment reference. Upload the screenshot/receipt slip below."
+    },
+    "announcement": "✨ Free Island-wide Delivery on orders above Rs. 12,000 | Authentic Luxury Decants & Flacons"
   },
   "users": [
     {
       "id": "usr_admin",
       "name": "Store Administrator",
       "email": "admin@scentory.lk",
-      "password": "$2b$10$2FttcdNmZRgT7Ml8AxWEnuUA8WXP8vqXeemsaWB.laCD8k7JPUfmO",
+      "password": "$2b$10$R3UDRWq6O88Tqb.mVKcQLOcQHxtP9ukuGZeyh/jf4rwqNf0LP3JCK",
       "role": "admin",
       "phone": "0763151311",
       "address": "SCENTORY Flagship Studio, Ulapane",
-      "city": "Kandy"
+      "city": "Kandy",
+      "createdAt": "2026-11-24T08:56:42.428Z"
     }
   ],
   "products": [
@@ -37,35 +41,35 @@
       "name": "Oud Royale Impérial",
       "gender": "Unisex",
       "scentFamily": "Oriental Woody Oud",
+      "badge": "Signature Masterpiece",
+      "isFeatured": true,
+      "rating": 5,
+      "reviewCount": 0,
       "description": "Opulent Cambodian agarwood blended with amber, smoky leather, and Turkish damask rose. Sri Lanka signature luxury extrait de parfum.",
       "images": [
         "/brand-logo.png"
       ],
-      "badge": "Signature Masterpiece",
-      "isFeatured": true,
-      "rating": 5,
-      "reviewCount": 1,
       "variants": [
         {
           "id": "v_5ml",
           "size": "5ml Pocket Spray",
           "price": 1950,
           "discountPrice": 1750,
-          "stock": 40
+          "stock": 50
         },
         {
           "id": "v_10ml",
           "size": "10ml Travel Atomizer",
           "price": 3800,
           "discountPrice": 3400,
-          "stock": 35
+          "stock": 40
         },
         {
           "id": "v_20ml",
           "size": "20ml Decant Flacon",
           "price": 7200,
           "discountPrice": 6500,
-          "stock": 20
+          "stock": 25
         },
         {
           "id": "v_50ml",
@@ -81,20 +85,13 @@
           "discountPrice": 25900,
           "stock": 10
         }
-      ]
+      ],
+      "createdAt": "2026-11-24T08:56:42.443Z"
     }
   ],
   "orders": [],
-  "reviews": [
-    {
-      "id": "rev_initial",
-      "customerName": "Mohamed Shuhail",
-      "productName": "Oud Royale Impérial",
-      "rating": 5,
-      "comment": "Authentic extrait de parfum decant. Outstanding projection and longevity!",
-      "verifiedBuyer": true,
-      "date": "2026-11-20"
-    }
-  ],
-  "notifications": []
+  "reviews": [],
+  "notifications": [],
+  "chatMessages": [],
+  "passwordResetRequests": []
 }

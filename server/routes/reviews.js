@@ -31,7 +31,7 @@ const upload = multer({
 });
 
 // Image upload for reviews
-router.post('/upload-photo', upload.single('photo'), (req, res) => {
+router.post('/upload-photo', upload.single('photo'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No photo provided.' });
   }
@@ -40,7 +40,7 @@ router.post('/upload-photo', upload.single('photo'), (req, res) => {
 });
 
 // GET all reviews with rating metrics
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const reviews = db.getReviews();
     const total = reviews.length;
@@ -70,7 +70,7 @@ router.get('/', (req, res) => {
 });
 
 // POST new customer review
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { customerName, rating, productName, comment, location, image } = req.body;
 
@@ -90,7 +90,7 @@ router.post('/', (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    db.addReview(newReview);
+    await db.addReview(newReview);
     res.status(201).json({ message: 'Review submitted successfully!', review: newReview });
   } catch (err) {
     console.error('Error submitting review:', err);
@@ -99,9 +99,9 @@ router.post('/', (req, res) => {
 });
 
 // ADMIN: Delete Review
-router.delete('/:id', authenticateToken, requireAdmin, (req, res) => {
+router.delete('/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const removed = db.deleteReview(req.params.id);
+    const removed = await db.deleteReview(req.params.id);
     if (!removed) {
       return res.status(404).json({ message: 'Review not found.' });
     }

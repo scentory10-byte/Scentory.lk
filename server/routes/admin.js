@@ -8,7 +8,7 @@ const { authenticateToken, requireAdmin } = require('../middleware/auth');
 router.use(authenticateToken, requireAdmin);
 
 // Dashboard summary stats
-router.get('/dashboard-stats', (req, res) => {
+router.get('/dashboard-stats', async (req, res) => {
   try {
     const products = db.getProducts();
     const orders = db.getOrders();
@@ -77,7 +77,7 @@ router.get('/dashboard-stats', (req, res) => {
 });
 
 // Sales Reports & Export
-router.get('/reports', (req, res) => {
+router.get('/reports', async (req, res) => {
   try {
     const orders = db.getOrders();
     const products = db.getProducts();
@@ -128,7 +128,7 @@ router.get('/reports', (req, res) => {
 // ==========================================
 
 // Get all customer users with order counts & total spent
-router.get('/users', (req, res) => {
+router.get('/users', async (req, res) => {
   try {
     const users = db.getUsers();
     const orders = db.getOrders();
@@ -166,13 +166,13 @@ router.get('/users', (req, res) => {
 });
 
 // Toggle Premium Member status
-router.patch('/users/:id/toggle-premium', (req, res) => {
+router.patch('/users/:id/toggle-premium', async (req, res) => {
   try {
     const user = db.getUserById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found.' });
 
     const newPremium = !user.isPremium;
-    const updated = db.updateUser(user.id, {
+    const updated = await db.updateUser(user.id, {
       isPremium: newPremium,
       membershipTier: newPremium ? 'VIP Premium Member' : 'Standard Member'
     });
@@ -204,7 +204,7 @@ router.post('/users/:id/reset-password', async (req, res) => {
     if (!user) return res.status(404).json({ message: 'User not found.' });
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    db.updateUser(user.id, { password: hashedPassword });
+    await db.updateUser(user.id, { password: hashedPassword });
 
     res.json({ message: `Password successfully reset for ${user.name} (${user.email}).` });
   } catch (err) {
@@ -213,7 +213,7 @@ router.post('/users/:id/reset-password', async (req, res) => {
 });
 
 // Delete customer account
-router.delete('/users/:id', (req, res) => {
+router.delete('/users/:id', async (req, res) => {
   try {
     const user = db.getUserById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found.' });
@@ -221,7 +221,7 @@ router.delete('/users/:id', (req, res) => {
       return res.status(403).json({ message: 'Admin accounts cannot be deleted here.' });
     }
 
-    db.deleteUser(user.id);
+    await db.deleteUser(user.id);
     res.json({ message: `Customer account ${user.name} (${user.email}) deleted.` });
   } catch (err) {
     res.status(500).json({ message: 'Failed to delete customer.' });
@@ -229,7 +229,7 @@ router.delete('/users/:id', (req, res) => {
 });
 
 // GET active password reset verification requests
-router.get('/reset-requests', (req, res) => {
+router.get('/reset-requests', async (req, res) => {
   try {
     const requests = db.getPasswordResetRequests();
     res.json({ requests });

@@ -31,7 +31,7 @@ const upload = multer({
 });
 
 // Image upload helper endpoint
-router.post('/upload-image', authenticateToken, requireAdmin, upload.single('image'), (req, res) => {
+router.post('/upload-image', authenticateToken, requireAdmin, upload.single('image'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No image file uploaded.' });
   }
@@ -40,7 +40,7 @@ router.post('/upload-image', authenticateToken, requireAdmin, upload.single('ima
 });
 
 // GET all products with filtering & search
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     let products = db.getProducts();
     const { search, category, gender, featured, trending, minPrice, maxPrice, sort } = req.query;
@@ -108,7 +108,7 @@ router.get('/', (req, res) => {
 });
 
 // GET Trending products (calculated from highest sales count or flagged)
-router.get('/trending', (req, res) => {
+router.get('/trending', async (req, res) => {
   try {
     const products = db.getProducts();
     const sorted = [...products].sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0));
@@ -119,7 +119,7 @@ router.get('/trending', (req, res) => {
 });
 
 // GET Featured products
-router.get('/featured', (req, res) => {
+router.get('/featured', async (req, res) => {
   try {
     const products = db.getProducts().filter(p => p.isFeatured);
     res.json(products);
@@ -129,7 +129,7 @@ router.get('/featured', (req, res) => {
 });
 
 // GET Single product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const product = db.getProductById(req.params.id);
   if (!product) {
     return res.status(404).json({ message: 'Fragrance not found.' });
@@ -138,7 +138,7 @@ router.get('/:id', (req, res) => {
 });
 
 // ADMIN: Create Product
-router.post('/', authenticateToken, requireAdmin, (req, res) => {
+router.post('/', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const {
       name,
@@ -188,7 +188,7 @@ router.post('/', authenticateToken, requireAdmin, (req, res) => {
       updatedAt: new Date().toISOString()
     };
 
-    db.addProduct(newProduct);
+    await db.addProduct(newProduct);
     res.status(201).json(newProduct);
   } catch (err) {
     console.error('Error creating product:', err);
@@ -197,7 +197,7 @@ router.post('/', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // ADMIN: Update Product
-router.put('/:id', authenticateToken, requireAdmin, (req, res) => {
+router.put('/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const existing = db.getProductById(req.params.id);
     if (!existing) {
@@ -241,7 +241,7 @@ router.put('/:id', authenticateToken, requireAdmin, (req, res) => {
       }));
     }
 
-    const updated = db.updateProduct(req.params.id, updates);
+    const updated = await db.updateProduct(req.params.id, updates);
     res.json(updated);
   } catch (err) {
     console.error('Error updating product:', err);
@@ -250,9 +250,9 @@ router.put('/:id', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // ADMIN: Delete Product
-router.delete('/:id', authenticateToken, requireAdmin, (req, res) => {
+router.delete('/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const removed = db.deleteProduct(req.params.id);
+    const removed = await db.deleteProduct(req.params.id);
     if (!removed) {
       return res.status(404).json({ message: 'Product not found.' });
     }
@@ -264,7 +264,7 @@ router.delete('/:id', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // ADMIN: Quick Stock Update
-router.patch('/:id/stock', authenticateToken, requireAdmin, (req, res) => {
+router.patch('/:id/stock', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const { variantId, stock } = req.body;
     const product = db.getProductById(req.params.id);
@@ -279,7 +279,7 @@ router.patch('/:id/stock', authenticateToken, requireAdmin, (req, res) => {
     }
 
     targetVariant.stock = Number(stock);
-    const updated = db.updateProduct(req.params.id, { variants });
+    const updated = await db.updateProduct(req.params.id, { variants });
     res.json(updated);
   } catch (err) {
     res.status(500).json({ message: 'Failed to update stock.' });

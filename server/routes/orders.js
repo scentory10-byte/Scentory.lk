@@ -45,7 +45,7 @@ const upload = multer({
 });
 
 // Upload bank slip endpoint
-router.post('/upload-slip', authenticateToken, upload.single('receipt'), (req, res) => {
+router.post('/upload-slip', authenticateToken, upload.single('receipt'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No receipt file provided.' });
   }
@@ -54,7 +54,7 @@ router.post('/upload-slip', authenticateToken, upload.single('receipt'), (req, r
 });
 
 // CREATE Order (Customer must be authenticated)
-router.post('/', authenticateToken, (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   try {
     const {
       customerDetails,
@@ -136,10 +136,10 @@ router.post('/', authenticateToken, (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    db.addOrder(newOrder);
+    await db.addOrder(newOrder);
 
     // Automatically trigger notification for Admin Panel
-    db.addNotification({
+    await db.addNotification({
       id: 'notif_' + Date.now(),
       type: 'order',
       title: `📦 New Order #${newOrder.id}`,
@@ -160,7 +160,7 @@ router.post('/', authenticateToken, (req, res) => {
 });
 
 // GET My Orders (Logged in customer)
-router.get('/my-orders', authenticateToken, (req, res) => {
+router.get('/my-orders', authenticateToken, async (req, res) => {
   try {
     const userOrders = db.getUserOrders(req.user.id);
     res.json(userOrders);
@@ -170,7 +170,7 @@ router.get('/my-orders', authenticateToken, (req, res) => {
 });
 
 // GET Single Order
-router.get('/:id', authenticateToken, (req, res) => {
+router.get('/:id', authenticateToken, async (req, res) => {
   const order = db.getOrderById(req.params.id);
   if (!order) {
     return res.status(404).json({ message: 'Order not found.' });
@@ -185,7 +185,7 @@ router.get('/:id', authenticateToken, (req, res) => {
 });
 
 // ADMIN: Get All Orders
-router.get('/', authenticateToken, requireAdmin, (req, res) => {
+router.get('/', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const orders = db.getOrders();
     const { status, paymentStatus, search } = req.query;
@@ -217,7 +217,7 @@ router.get('/', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // ADMIN: Update Order Status & Payment Verification
-router.patch('/:id/status', authenticateToken, requireAdmin, (req, res) => {
+router.patch('/:id/status', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const { orderStatus, paymentStatus, adminNotes } = req.body;
     const existing = db.getOrderById(req.params.id);
@@ -230,7 +230,7 @@ router.patch('/:id/status', authenticateToken, requireAdmin, (req, res) => {
     if (paymentStatus) updates.paymentStatus = paymentStatus;
     if (adminNotes !== undefined) updates.adminNotes = adminNotes;
 
-    const updated = db.updateOrder(req.params.id, updates);
+    const updated = await db.updateOrder(req.params.id, updates);
     res.json(updated);
   } catch (err) {
     res.status(500).json({ message: 'Failed to update order status.' });
@@ -238,7 +238,7 @@ router.patch('/:id/status', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // ADMIN: Delete Order (Permanently remove fake/spam/cancelled order)
-router.delete('/:id', authenticateToken, requireAdmin, (req, res) => {
+router.delete('/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const orderId = req.params.id;
     const existing = db.getOrderById(orderId);
@@ -246,7 +246,7 @@ router.delete('/:id', authenticateToken, requireAdmin, (req, res) => {
       return res.status(404).json({ message: 'Order not found.' });
     }
 
-    const deleted = db.deleteOrder(orderId);
+    const deleted = await db.deleteOrder(orderId);
     res.json({ message: `Order ${orderId} deleted permanently.`, order: deleted });
   } catch (err) {
     console.error('Error deleting order:', err);

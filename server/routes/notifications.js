@@ -4,7 +4,7 @@ const db = require('../db');
 const { authenticateToken, requireAdmin } = require('../middleware/auth');
 
 // GET all admin notifications (with unread count)
-router.get('/', authenticateToken, requireAdmin, (req, res) => {
+router.get('/', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const notifications = db.getNotifications();
     const unreadCount = notifications.filter(n => !n.read).length;
@@ -18,9 +18,9 @@ router.get('/', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // PATCH mark all notifications as read
-router.patch('/mark-all-read', authenticateToken, requireAdmin, (req, res) => {
+router.patch('/mark-all-read', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const notifications = db.markAllNotificationsRead();
+    const notifications = await db.markAllNotificationsRead();
     res.json({
       message: 'All notifications marked as read.',
       notifications,
@@ -32,9 +32,9 @@ router.patch('/mark-all-read', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // PATCH mark a specific notification as read
-router.patch('/:id/read', authenticateToken, requireAdmin, (req, res) => {
+router.patch('/:id/read', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const notif = db.markNotificationRead(req.params.id);
+    const notif = await db.markNotificationRead(req.params.id);
     if (!notif) return res.status(404).json({ message: 'Notification not found.' });
     const notifications = db.getNotifications();
     const unreadCount = notifications.filter(n => !n.read).length;
@@ -45,9 +45,9 @@ router.patch('/:id/read', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // DELETE clear all notifications
-router.delete('/clear-all', authenticateToken, requireAdmin, (req, res) => {
+router.delete('/clear-all', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    db.clearAllNotifications();
+    await db.clearAllNotifications();
     res.json({ message: 'All notifications cleared.', notifications: [], unreadCount: 0 });
   } catch (err) {
     res.status(500).json({ message: 'Failed to clear notifications.' });
@@ -55,9 +55,9 @@ router.delete('/clear-all', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // DELETE a notification
-router.delete('/:id', authenticateToken, requireAdmin, (req, res) => {
+router.delete('/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const removed = db.deleteNotification(req.params.id);
+    const removed = await db.deleteNotification(req.params.id);
     if (!removed) return res.status(404).json({ message: 'Notification not found.' });
     res.json({ message: 'Notification dismissed.' });
   } catch (err) {

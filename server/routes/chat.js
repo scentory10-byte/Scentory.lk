@@ -4,7 +4,7 @@ const db = require('../db');
 const { authenticateToken, requireAdmin } = require('../middleware/auth');
 
 // POST a new live chat / custom perfume creation message
-router.post('/messages', (req, res) => {
+router.post('/messages', async (req, res) => {
   try {
     const { customerName, phone, email, scentVision, notes, budget, message, isCustomCreation } = req.body;
 
@@ -26,10 +26,10 @@ router.post('/messages', (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    db.addChatMessage(newMsg);
+    await db.addChatMessage(newMsg);
 
     // Create high-priority notification for Admin
-    db.addNotification({
+    await db.addNotification({
       id: 'notif_' + Date.now(),
       type: 'chat',
       title: isCustomCreation ? '✨ New Bespoke Fragrance Creation' : '💬 Live Chat Message',
@@ -51,7 +51,7 @@ router.post('/messages', (req, res) => {
 });
 
 // GET all chat & custom creation messages (Admin only)
-router.get('/messages', authenticateToken, requireAdmin, (req, res) => {
+router.get('/messages', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const messages = db.getChatMessages();
     res.json(messages);
@@ -61,7 +61,7 @@ router.get('/messages', authenticateToken, requireAdmin, (req, res) => {
 });
 
 // PATCH mark message as read
-router.patch('/messages/:id/read', authenticateToken, requireAdmin, (req, res) => {
+router.patch('/messages/:id/read', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const updated = db.markChatMessageRead(req.params.id);
     if (!updated) return res.status(404).json({ message: 'Message not found.' });
@@ -72,9 +72,9 @@ router.patch('/messages/:id/read', authenticateToken, requireAdmin, (req, res) =
 });
 
 // DELETE a message
-router.delete('/messages/:id', authenticateToken, requireAdmin, (req, res) => {
+router.delete('/messages/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const removed = db.deleteChatMessage(req.params.id);
+    const removed = await db.deleteChatMessage(req.params.id);
     if (!removed) return res.status(404).json({ message: 'Message not found.' });
     res.json({ message: 'Message deleted successfully.' });
   } catch (err) {

@@ -38,7 +38,7 @@ router.post('/register', async (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    db.addUser(newUser);
+    await db.addUser(newUser);
 
     const token = jwt.sign({ id: newUser.id, role: newUser.role }, JWT_SECRET, { expiresIn: '7d' });
 
@@ -102,7 +102,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Current User Profile
-router.get('/me', authenticateToken, (req, res) => {
+router.get('/me', authenticateToken, async (req, res) => {
   res.json({ user: req.user });
 });
 
@@ -121,7 +121,7 @@ router.put('/me', authenticateToken, async (req, res) => {
       updates.password = await bcrypt.hash(password, salt);
     }
 
-    const updatedUser = db.updateUser(req.user.id, updates);
+    const updatedUser = await db.updateUser(req.user.id, updates);
     res.json({
       message: 'Profile updated successfully.',
       user: {
@@ -154,7 +154,7 @@ router.post('/request-password-reset', async (req, res) => {
       return res.status(404).json({ message: 'No registered customer account found with this email address.' });
     }
 
-    const resetData = db.createPasswordResetRequest(user.email);
+    const resetData = await db.createPasswordResetRequest(user.email);
     if (!resetData) {
       return res.status(500).json({ message: 'Failed to generate reset code.' });
     }
@@ -207,13 +207,13 @@ router.post('/verify-reset-code', async (req, res) => {
     // Hash and update password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
-    db.updateUser(user.id, { password: hashedPassword });
+    await db.updateUser(user.id, { password: hashedPassword });
 
     // Consume reset request
     db.consumeResetRequest(email.trim(), code);
 
     // Notify Admin of completed reset
-    db.addNotification({
+    await db.addNotification({
       id: 'notif_' + Date.now(),
       type: 'user',
       title: '✅ Password Reset Confirmed',
