@@ -1,24 +1,24 @@
 [build]
-  command = npm run build --prefix client
-  publish = client/dist
+  command = "npm run build --prefix client"
+  publish = "client/dist"
 
 [functions]
-  directory = netlify/functions
-  node_bundler = esbuild
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
-  from = /api/*
-  to = /.netlify/functions/api/:splat
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
   status = 200
   force = true
 
 [[redirects]]
-  from = /uploads/*
-  to = /.netlify/functions/api/uploads/:splat
+  from = "/uploads/*"
+  to = "/.netlify/functions/api/uploads/:splat"
   status = 200
   force = true
 
 [[redirects]]
-  from = /*
-  to = /index.html
+  from = "/*"
+  to = "/index.html"
   status = 200
