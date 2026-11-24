@@ -9,9 +9,13 @@ try {
 
 const DB_PATH = path.join(__dirname, 'data', 'database.json');
 
-// Ensure data folder exists
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
-  fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
+// Ensure data folder exists (wrapped safely for serverless runtimes)
+try {
+  if (!fs.existsSync(path.join(__dirname, 'data'))) {
+    fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
+  }
+} catch (e) {
+  // Read-only filesystem in serverless, fallback handled by MongoDB Atlas
 }
 
 // Initial default seed

@@ -28,8 +28,12 @@ const productsDir = path.join(uploadsDir, 'products');
 const receiptsDir = path.join(uploadsDir, 'receipts');
 
 [uploadsDir, productsDir, receiptsDir].forEach(dir => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
+  try {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  } catch (err) {
+    // In serverless / read-only filesystem environments (e.g. Netlify/Vercel), ignore mkdir failures
   }
 });
 
