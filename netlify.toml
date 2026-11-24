@@ -1,39 +1,24 @@
 [build]
-  base = "client"
-  command = "npm run build"
-  publish = "dist"
+  command = npm run build --prefix client
+  publish = client/dist
 
 [functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-  included_files = ["server/**", "node_modules/**"]
+  directory = netlify/functions
+  node_bundler = esbuild
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  from = /api/*
+  to = /.netlify/functions/api/:splat
   status = 200
+  force = true
 
 [[redirects]]
-  from = "/uploads/*"
-  to = "/.netlify/functions/api/uploads/:splat"
+  from = /uploads/*
+  to = /.netlify/functions/api/uploads/:splat
   status = 200
+  force = true
 
 [[redirects]]
-  from = "/brand-logo.png"
-  to = "/.netlify/functions/api/brand-logo.png"
-  status = 200
-
-[[redirects]]
-  from = "/robots.txt"
-  to = "/.netlify/functions/api/robots.txt"
-  status = 200
-
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/.netlify/functions/api/sitemap.xml"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = /*
+  to = /index.html
   status = 200
