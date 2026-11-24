@@ -345,9 +345,19 @@ class Database {
   constructor() {
     this.mongoCollection = null;
     this.mongoClient = null;
+    this.connectPromise = null;
     this.init();
     if (process.env.MONGODB_URI && MongoClient) {
-      this.connectMongo(process.env.MONGODB_URI);
+      this.connectPromise = this.connectMongo(process.env.MONGODB_URI);
+    }
+  }
+
+  async ensureConnected() {
+    if (this.connectPromise) {
+      try { await this.connectPromise; } catch (e) {}
+    } else if (process.env.MONGODB_URI && MongoClient && !this.mongoCollection) {
+      this.connectPromise = this.connectMongo(process.env.MONGODB_URI);
+      try { await this.connectPromise; } catch (e) {}
     }
   }
 
