@@ -9,7 +9,9 @@ const { authenticateToken, requireAdmin } = require('../middleware/auth');
 // Setup multer for review photo uploads
 const reviewUploadDir = path.join(__dirname, '..', 'uploads', 'reviews');
 if (!fs.existsSync(reviewUploadDir)) {
+  try {
   fs.mkdirSync(reviewUploadDir, { recursive: true });
+  } catch (err) { /* serverless read-only filesystem */ }
 }
 
 const storage = multer.diskStorage({

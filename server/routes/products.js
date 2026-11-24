@@ -9,7 +9,9 @@ const { authenticateToken, requireAdmin } = require('../middleware/auth');
 // Setup multer for product image uploads
 const uploadDir = path.join(__dirname, '..', 'uploads', 'products');
 if (!fs.existsSync(uploadDir)) {
+  try {
   fs.mkdirSync(uploadDir, { recursive: true });
+  } catch (err) { /* serverless read-only filesystem */ }
 }
 
 const storage = multer.diskStorage({

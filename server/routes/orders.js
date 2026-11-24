@@ -9,7 +9,9 @@ const { authenticateToken, requireAdmin } = require('../middleware/auth');
 // Setup multer for bank slip / payment proof uploads
 const receiptDir = path.join(__dirname, '..', 'uploads', 'receipts');
 if (!fs.existsSync(receiptDir)) {
+  try {
   fs.mkdirSync(receiptDir, { recursive: true });
+  } catch (err) { /* serverless read-only filesystem */ }
 }
 
 // Create a dummy sample slip image if none exists so seed orders have valid preview
