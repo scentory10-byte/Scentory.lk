@@ -28,16 +28,7 @@ if (!fs.existsSync(sampleSlipPath)) {
   }
 }
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, receiptDir);
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const unique = 'slip_' + Date.now() + '_' + Math.round(Math.random() * 1e5) + ext;
-    cb(null, unique);
-  }
-});
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,

@@ -14,16 +14,7 @@ if (!fs.existsSync(reviewUploadDir)) {
   } catch (err) { /* serverless read-only filesystem */ }
 }
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, reviewUploadDir);
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const unique = 'rev_' + Date.now() + '_' + Math.round(Math.random() * 1e5) + ext;
-    cb(null, unique);
-  }
-});
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
